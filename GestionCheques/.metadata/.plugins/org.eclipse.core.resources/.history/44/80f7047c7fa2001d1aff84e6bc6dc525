@@ -1,0 +1,3 @@
+spring.datasource.url=jdbc:sqlserver://LAPTOP-F080QQ8N:1433;databaseName=mantChequeras
+spring.datasource.username=sa
+spring.datasource.password=123
