@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,15 +38,15 @@ public class chequeraCtrl {
 	@RequestMapping(value = "/asignar-chequera/{id}", method = RequestMethod.POST)
 	public String asignarChequera(@RequestBody chequera chequera, @PathVariable("id") Long cuentaId) {
 		try {
-			cuenta c = cuentaRepo.getById(cuentaId);
-			if(c == null) {
+			Optional<cuenta> c = cuentaRepo.findById(cuentaId);
+			if(!c.isPresent()) {
 				throw new Exception(String.format("La cuenta %d no existe", cuentaId));
 			}
 			chequera.setFechaAsignacion(new Timestamp(new Date().getTime()));
-			chequera.setCuenta(c);
-			chequera cheq = chequeraRepo.save(chequera);
+			chequera.setCuenta(c.get());
+			
 			List <cheque> listaCheques = new ArrayList<cheque>();
-			//Se crean 10 cheques para esta chequera
+			
 			for (int i = 0; i < 10; i++) {
 				cheque ch = new cheque();
 				ch.setNumeroCheque(i);
@@ -53,8 +54,8 @@ public class chequeraCtrl {
 				listaCheques.add(ch);
 			}
 			chequera.setCheques(listaCheques);
-			chequeraRepo.saveAndFlush(chequera);
-			return String.format("Se asignó la chequera a la cuenta %d",cheq.getCuenta().getCuenta_id());
+			chequeraRepo.save(chequera);
+			return String.format("Se asignó la chequera a la cuenta %d",chequera.getCuenta().getCuenta_id());
 		}catch(Exception e) {
 			return "Error al asignar cuenta: " + e;
 		}

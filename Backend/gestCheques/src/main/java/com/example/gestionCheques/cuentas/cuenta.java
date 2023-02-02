@@ -1,15 +1,15 @@
 package com.example.gestionCheques.cuentas;
 
-
-
 import java.sql.Timestamp;
 import java.util.List;
 
 import com.example.gestionCheques.chequeras.chequera;
+import com.example.gestionCheques.cheques.cheque;
 import com.example.gestionCheques.clientes.cliente;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,32 +18,40 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "cuenta")
 public class cuenta {
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cuenta_id;
-	
+
 	@JsonBackReference
 	@ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private cliente cliente;
-	
+	@JoinColumn(name = "cliente_id")
+	private cliente cliente;
+
 	@Column
 	private Timestamp fechaApertura;
-	
+
 	@Column
 	private Integer tipoCuenta_id;
-	
+
 	@Column
 	private Double monto;
-	
+
 	@JsonManagedReference
-	@OneToMany(mappedBy = "chequera")
-    private List<chequera> chequeras;
+	@OneToMany(mappedBy = "cuenta", cascade = { CascadeType.ALL }, orphanRemoval = true)
+	@OrderBy("id ASC")
+	private List<chequera> chequeras;
+
+	@Override
+	public String toString() {
+		return "cuenta [cuenta_id=" + cuenta_id + ", cliente=" + cliente + ", fechaApertura=" + fechaApertura
+				+ ", tipoCuenta_id=" + tipoCuenta_id + ", monto=" + monto + ", chequeras=" + chequeras + "]";
+	}
 
 	public Integer getTipoCuenta_id() {
 		return tipoCuenta_id;

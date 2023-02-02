@@ -37,9 +37,9 @@ CREATE TABLE cheque (
   cheque_id INT IDENTITY(1,1) PRIMARY KEY,
   chequera_id INT NOT NULL,
   numeroCheque INT NOT NULL,
-  beneficiario NVARCHAR(100) NOT NULL,
-  monto DECIMAL(10,2) NOT NULL,
-  fecha DATE NOT NULL,
+  beneficiario NVARCHAR(100) NULL,
+  monto DECIMAL(10,2) NULL,
+  fecha DATE NULL,
   FOREIGN KEY (chequera_id) REFERENCES chequera (chequera_id)
 );
 

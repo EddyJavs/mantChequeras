@@ -6,6 +6,7 @@ import com.example.gestionCheques.cuentas.cuenta;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,14 +20,15 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "cheque")
 public class cheque {
+	@Override
+	public String toString() {
+		return "cheque [cheque_id=" + cheque_id + ", numeroCheque=" + numeroCheque + ", beneficiario=" + beneficiario
+				+ ", monto=" + monto + ", fecha=" + fecha + ", chequera=" + chequera + "]";
+	}
+
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long cheque_id;
-	
-	@JsonBackReference
-	@ManyToOne
-    @JoinColumn(name = "chequera_id")
-    private chequera cuenta;
 	
 	@Column
 	private Integer numeroCheque;
@@ -40,6 +42,11 @@ public class cheque {
 	@Column
 	private Timestamp fecha;
 	
+	@JsonBackReference
+	@ManyToOne
+    @JoinColumn(name = "chequera_id")
+    private chequera chequera;
+	
 	public Long getCheque_id() {
 		return cheque_id;
 	}
@@ -49,11 +56,11 @@ public class cheque {
 	}
 
 	public chequera getChequera() {
-		return cuenta;
+		return this.chequera;
 	}
 
 	public void setChequera(chequera cuenta) {
-		this.cuenta = cuenta;
+		this.chequera = cuenta;
 	}
 
 	public Integer getNumeroCheque() {
