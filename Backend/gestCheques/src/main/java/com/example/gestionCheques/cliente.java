@@ -1,14 +1,25 @@
 package com.example.gestionCheques;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "cliente")
 public class cliente {
-	private int cliente_id;
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	private Long cliente_id;
+	
 	private String nombre;
 	private String direccion;
 	private String telefono;
-	public int getCliente_id() {
+	public Long getCliente_id() {
 		return cliente_id;
 	}
-	public void setCliente_id(int cliente_id) {
+	public void setCliente_id(Long cliente_id) {
 		this.cliente_id = cliente_id;
 	}
 	public String getNombre() {

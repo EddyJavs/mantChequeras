@@ -6,23 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootApplication
-public class MantChequesApplication implements CommandLineRunner {
+public class GestChequesApplication implements CommandLineRunner {
 
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
-
+	private ClienteRepository clienteRepo;
+	
 	public static void main(String[] args) {
-		SpringApplication.run(MantChequesApplication.class, args);
+		SpringApplication.run(GestChequesApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		String sql = "SELECT * FROM cliente";
-		List<cliente> clientes = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(cliente.class));
+		List<cliente> clientes = clienteRepo.findAll();	
 		clientes.forEach(System.out :: println);
 	}
 
