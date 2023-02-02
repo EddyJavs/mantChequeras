@@ -1,1 +1,32 @@
-<p>cuentas works!</p>
+<body>
+    <br>
+    <h1 style="text-align:center">APERTURA DE CUENTAS</h1>
+    <br><br>
+    <form class="form-row align-items-center" [formGroup]="formulario">
+        <label for="cliente">Cliente:</label>
+        <div class="col-auto">
+            <select class="form-control" id="clienteId" formControlName="clienteId">
+                <option *ngFor="let cliente of clientes" [ngValue]="cliente.cliente_id">{{cliente.cliente_id}} -
+                    {{cliente.nombre}}</option>
+            </select>
+        </div>
+
+        <div class="col-auto">
+            <label for="tipoCuenta">Tipo de Cuenta:</label>
+            <select class="form-control" id="tipoCuenta" formControlName="tipoCuenta">
+                <option value="1">Ahorro</option>
+                <option value="2">Monetaria</option>
+            </select>
+        </div>
+
+        <div class="col-auto">
+            <label for="monto">Amount:</label>
+            <input class="form-control" id="monto" formControlName="monto" type="number">
+        </div>
+        <br>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2" (click)="asignarCuenta()">Asignar Cuenta</button>
+          </div>
+
+    </form>
+</body>

@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 
 export class apiService{
     private apiClientes = 'http://localhost:8080/clientes';
+    private apiCuentas = 'http://localhost:8080/cuentas';
 
     constructor(private httpCliente: HttpClient){
 
@@ -23,6 +24,10 @@ export class apiService{
 
     public saveCliente(cliente: any){
       return this.httpCliente.post(`${this.apiClientes}/crear`, cliente);
+    }
+
+    public asignarCuenta(cuenta: any, clienteId:Number){
+      return this.httpCliente.post(`${this.apiCuentas}/asignar-cuenta/${clienteId}`, cuenta);
     }
 
 }
