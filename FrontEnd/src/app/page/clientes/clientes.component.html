@@ -1,1 +1,65 @@
-<p>clientes works!</p>
+<body>
+    <br>
+    <h1 style="text-align:center">CATALOGO DE CLIENTES</h1>
+    <br><br>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+                <th>Cuentas</th>
+                <th>Acciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of clientes">
+                <td>{{client.cliente_id}}</td>
+                <td>{{client.nombre}}</td>
+                <td>{{client.direccion}}</td>
+                <td>{{client.telefono}}</td>
+                <td>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let cuenta of client.cuentas">
+                        <td>{{cuenta.cuenta_id}}</td><td>{{cuenta.monto}}</td> 
+                    </tr>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="eliminarCliente(client.cliente_id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary" (click)="mostrarFormulario=true">Agregar Cliente</button>
+
+    <form *ngIf="mostrarFormulario" class="form-group mt-3" [formGroup]="formulario">
+        <div class="form-group">
+          <label>Nombre:</label>
+          <input type="text" formControlName="nombre" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Direccion:</label>
+          <input type="text" formControlName="direccion" class="form-control">
+        </div>
+        <div class="telefono">
+            <label>Telefono:</label>
+            <input type="text" formControlName="telefono" class="form-control">
+          </div>
+        <button class="btn btn-primary" (click)="agregarCliente()" [disabled]="!formulario.valid">Enviar</button>
+    </form>
+    
+</body>
+
+
+
+
+
+
