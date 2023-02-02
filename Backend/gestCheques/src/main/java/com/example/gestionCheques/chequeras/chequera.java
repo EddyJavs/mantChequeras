@@ -35,7 +35,15 @@ public class chequera {
 	@OneToMany(mappedBy = "cheque")
     private List<cheque> cheques;
     
-    @Column
+    public List<cheque> getCheques() {
+		return cheques;
+	}
+
+	public void setCheques(List<cheque> cheques) {
+		this.cheques = cheques;
+	}
+
+	@Column
 	private Timestamp fechaAsignacion;
 	
 	public Long getChequera_id() {

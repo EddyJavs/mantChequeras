@@ -48,11 +48,11 @@ public class cheque {
 		this.cheque_id = cheque_id;
 	}
 
-	public chequera getCuenta() {
+	public chequera getChequera() {
 		return cuenta;
 	}
 
-	public void setCuenta(chequera cuenta) {
+	public void setChequera(chequera cuenta) {
 		this.cuenta = cuenta;
 	}
 
