@@ -1,5 +1,7 @@
 package com.example.gestionCheques.cuentas;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,7 @@ public class cuentaCtrl {
 			if(c == null) {
 				throw new Exception(String.format("El cliente %d no existe", clienteId));
 			}
+			cuenta.setFechaApertura(new Timestamp(new Date().getTime()));
 			cuenta.setCliente(c);
 			cuenta cuent = cuentaRepo.save(cuenta);
 			return String.format("Se asignó la cuenta al cliente %d",cuent.getCliente().getCliente_id());

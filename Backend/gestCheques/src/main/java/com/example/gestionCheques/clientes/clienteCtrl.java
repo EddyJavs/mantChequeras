@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.gestionCheques.cuentas.CuentaRepository;
-import com.example.gestionCheques.cuentas.cuenta;
 
 
 
