@@ -3,9 +3,12 @@ package com.example.gestionCheques.cuentas;
 
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import com.example.gestionCheques.chequeras.chequera;
 import com.example.gestionCheques.clientes.cliente;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -36,6 +40,26 @@ public class cuenta {
 	
 	@Column
 	private Double monto;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "chequera")
+    private List<chequera> chequeras;
+
+	public Integer getTipoCuenta_id() {
+		return tipoCuenta_id;
+	}
+
+	public void setTipoCuenta_id(Integer tipoCuenta_id) {
+		this.tipoCuenta_id = tipoCuenta_id;
+	}
+
+	public List<chequera> getChequeras() {
+		return chequeras;
+	}
+
+	public void setChequeras(List<chequera> chequeras) {
+		this.chequeras = chequeras;
+	}
 
 	public Long getCuenta_id() {
 		return cuenta_id;
