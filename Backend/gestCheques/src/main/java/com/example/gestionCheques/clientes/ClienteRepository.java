@@ -1,4 +1,4 @@
-package com.example.gestionCheques;
+package com.example.gestionCheques.clientes;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
