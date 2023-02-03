@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.gestionCheques.clientes.ClienteRepository;
 import com.example.gestionCheques.clientes.cliente;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
+
 @RestController
 @RequestMapping("/cuentas")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -26,9 +30,11 @@ public class cuentaCtrl {
 	@Autowired
 	private ClienteRepository clienteRepo;
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public List<cuenta> obtenerTodos(){
-		return cuentaRepo.findAll();
+	@Transactional
+	@RequestMapping(value = "/{clienteId}", method = RequestMethod.GET)
+	public List<cuenta> obtenerPorCliente(@PathVariable("clienteId") Long clienteId){
+		List<cuenta> cuentas = cuentaRepo.findByClienteId(clienteId);
+		return cuentas;
 	}
 	
 	@RequestMapping(value = "/asignar-cuenta/{id}", method = RequestMethod.POST)

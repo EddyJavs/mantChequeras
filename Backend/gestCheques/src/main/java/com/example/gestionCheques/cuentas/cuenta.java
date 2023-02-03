@@ -32,6 +32,9 @@ public class cuenta {
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private cliente cliente;
+	
+	@Column(name="cliente_id", insertable=false, updatable=false)
+	private Long clienteId;
 
 	@Column
 	private Timestamp fechaApertura;
