@@ -1,1 +1,29 @@
-<p>chequeras works!</p>
+<body>
+    <br>
+    <h1 style="text-align:center">ASIGNACION DE CHEQUERAS</h1>
+    <br><br>
+    <form class="form-row align-items-center" [formGroup]="formulario">
+        <label for="cliente">Cliente:</label>
+        <div class="col-auto">
+            <select class="form-control" id="clienteId" formControlName="clienteId" (change)="consultarCuentasPorCliente($event)">
+                <option *ngFor="let cliente of clientes" [ngValue]="cliente.cliente_id">{{cliente.cliente_id}} -
+                    {{cliente.nombre}}
+                </option>
+            </select>
+        </div>
+
+        <div class="col-auto">
+            <label for="tipoCuenta">Cuenta:</label>
+            <select class="form-control" id="tipoCuenta" formControlName="cuentaId">
+                <option *ngFor="let cuenta of cuentas" [ngValue]="cuenta.cuenta_id">
+                    {{cuenta.cuenta_id}} - {{cuenta.tipoCuenta}} - {{cuenta.fechaApertura}}
+                </option>
+            </select>
+        </div>
+        <br>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2" (click)="asignarChequera()">Asignar Cheque</button>
+          </div>
+
+    </form>
+</body>

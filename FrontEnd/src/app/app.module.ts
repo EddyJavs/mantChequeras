@@ -13,6 +13,7 @@ import { CuentasComponent } from './page/cuentas/cuentas.component';
 import { ChequerasComponent } from './page/chequeras/chequeras.component';
 
 import { apiService } from './page/api.service';
+import { ChequesComponent } from './page/cheques/cheques.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { apiService } from './page/api.service';
     NavComponent,
     ClientesComponent,
     CuentasComponent,
-    ChequerasComponent
+    ChequerasComponent,
+    ChequesComponent
   ],
   imports: [
     BrowserModule,

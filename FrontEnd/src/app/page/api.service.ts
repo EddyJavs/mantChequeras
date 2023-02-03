@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 export class apiService{
     private apiClientes = 'http://localhost:8080/clientes';
     private apiCuentas = 'http://localhost:8080/cuentas';
+    private apiChequeras = 'http://localhost:8080/chequeras';
 
     constructor(private httpCliente: HttpClient){
 
@@ -28,6 +29,14 @@ export class apiService{
 
     public asignarCuenta(cuenta: any, clienteId:Number){
       return this.httpCliente.post(`${this.apiCuentas}/asignar-cuenta/${clienteId}`, cuenta);
+    }
+
+    public getCuentasPorCliente(clienteId: Number){
+      return this.httpCliente.get<[any]>(`${this.apiCuentas}/${clienteId}`); 
+    }
+
+    public asignarChequera(chequera: any, cuentaId:Number){
+      return this.httpCliente.post(`${this.apiChequeras}/asignar-cheque/${cuentaId}`, chequera);
     }
 
 }

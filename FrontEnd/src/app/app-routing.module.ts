@@ -5,12 +5,14 @@ import { HomeComponent } from './page/home/home.component';
 import { ClientesComponent } from './page/clientes/clientes.component';
 import { CuentasComponent } from './page/cuentas/cuentas.component';
 import { ChequerasComponent } from './page/chequeras/chequeras.component';
+import { ChequesComponent } from './page/cheques/cheques.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'clientes', component: ClientesComponent},
   {path: 'cuentas', component: CuentasComponent},
   {path: 'chequeras', component: ChequerasComponent},
+  {path: 'cheques', component: ChequesComponent},
   {path: '**', pathMatch:'full', redirectTo: 'home'}
 
 ];
