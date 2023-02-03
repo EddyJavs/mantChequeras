@@ -1,0 +1,183 @@
+SERVICIOS REALIZADOS:
+Method: POST
+Endpoint: localhost:8080/chequeras/asignar-chequera/1
+Descripción: Crea una nueva chequera, con sus cheques y asocia la chequera a una cuenta.
+PathParams: 
+Id tipo Long: Id de la cuenta a la que se le asignara la chequera.
+Body:
+	chequera: Json con los atributos para crear una chequera ej.
+{
+    "cuenta_id": "1",
+    "fechaAsignacion": "2023-02-02"
+}
+
+Código:
+ 
+Method: GET
+Endpoint: localhost:8080/clientes
+Descripción: Obtiene todos los clientes creados.
+Response:
+[
+    {
+        "cliente_id": 1,
+        "nombre": "SIRIN",
+        "direccion": "29021901",
+        "telefono": "47380582",
+        "cuentas": [
+            {
+                "cuenta_id": 1,
+                "fechaApertura": "2023-02-03T02:43:46.127+00:00",
+                "tipoCuenta_id": 2,
+                "monto": 500.0,
+                "chequeras": [
+                    {
+                        "chequera_id": 1,
+                        "cheques": [
+                            {
+                                "cheque_id": 1,
+                                "numeroCheque": 0,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            },
+                            {
+                                "cheque_id": 2,
+                                "numeroCheque": 1,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            },
+                            {
+                                "cheque_id": 3,
+                                "numeroCheque": 2,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            },
+                            {
+                                "cheque_id": 4,
+                                "numeroCheque": 3,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            },
+                            {
+                                "cheque_id": 5,
+                                "numeroCheque": 4,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            },
+                            {
+                                "cheque_id": 6,
+                                "numeroCheque": 5,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            },
+                            {
+                                "cheque_id": 7,
+                                "numeroCheque": 6,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            },
+                            {
+                                "cheque_id": 8,
+                                "numeroCheque": 7,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            },
+                            {
+                                "cheque_id": 9,
+                                "numeroCheque": 8,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            },
+                            {
+                                "cheque_id": 10,
+                                "numeroCheque": 9,
+                                "beneficiario": null,
+                                "monto": null,
+                                "fecha": null
+                            }
+                        ],
+                        "fechaAsignacion": "2023-02-03T02:45:17.334+00:00"
+                    }
+                ],
+                "tipoCuenta": 2
+            },
+            {
+                "cuenta_id": 2,
+                "fechaApertura": "2023-02-03T02:43:47.081+00:00",
+                "tipoCuenta_id": 2,
+                "monto": 500.0,
+                "chequeras": [],
+                "tipoCuenta": 2
+            }
+        ]
+    },
+    {
+        "cliente_id": 2,
+        "nombre": "SIRIN",
+        "direccion": "29021901",
+        "telefono": "47380582",
+        "cuentas": []
+    }
+]
+
+Código:
+ 
+Method: POST
+Endpoint: localhost:8080/clientes/crear
+Descripción: Crea un nuevo cliente 
+Body:
+	cliente: Json con los atributos para crear un cliente ej.
+
+{
+    "nombre": "SIRIN",
+    "direccion": "29021901",
+    "telefono": "47380582"
+}
+
+Código:
+ 
+Method: DELETE
+Endpoint: localhost:8080/clientes/1
+Descripción: Elimina un cliente.
+PathParams: 
+Id tipo Long: Id del cliente a eliminar.
+Código:
+
+ 
+Method: GET
+Endpoint: localhost:8080/cuentas
+Descripción: Obtiene todas las cuentas creadas.
+Código:
+ 
+
+Method: POST
+Endpoint: localhost:8080/cuentas/asignar-cuenta/1
+Descripción: asocia la cuenta a un cliente.
+PathParams: 
+Id tipo Long: Id de la cuenta a la que se le asignara la chequera.
+Body:
+	cuenta: Json con los atributos para asignar una cuenta a un cliente ej.
+{
+    "cliente_id": "1",
+    "fechaApertura": "2023-02-02",
+    "tipoCuenta": "2",
+    "monto": 500.00
+}
+Código:
+ 
+Method: DELETE
+Endpoint: localhost:8080/cuentas/1
+Descripción: Elimina una cuenta.
+PathParams: 
+Id tipo Long: Id de la cuenta que se eliminara.
+Código:
+ 
+
